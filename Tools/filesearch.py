@@ -12,6 +12,12 @@ args = parser.parse_args()
 
 # Search target files
 def search_file():
+  """
+    Args:
+      
+    Return:
+
+  """
   exts = args.target_ext
   tgt_exts = ['.{}'.format(ext) for ext in exts.split(',')]
 
@@ -20,9 +26,9 @@ def search_file():
     for f in files:
       _, ext = os.path.splitext(f)
 
-      if ext not in exts:
+      if ext in exts:
         absroot = os.path.abspath(root)
-        
+
         if args.outfile is not None:
           with open(args.outfile, 'wt') as search_file:
             search_file.write(os.path.join(absroot, f))
