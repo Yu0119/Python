@@ -16,7 +16,7 @@ def fizzbuzz(numbers):
   """
   
   results = []
-  for n in numbers:
+  for n in range(numbers):
     result = ''
     if not (n%3==0 or n%5==0):
       result = '{}'.format(n)
@@ -33,7 +33,7 @@ def fizzbuzz(numbers):
 
 if __name__ == '__main__':
   
-  results = fizzbuzz(args.numbers)
-  
+  results = fizzbuzz(args.num)
+
   for result in results:
     print(result)
