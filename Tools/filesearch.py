@@ -20,14 +20,18 @@ def search_file():
   """
   exts = args.target_ext
   tgt_exts = ['.{}'.format(ext) for ext in exts.split(',')]
+
   # ルートパス内のディレクトリとファイルを探索
   for root, dirs, files in os.walk(args.rootpath):
+    
     for f in files:
       # ファイルの拡張子を取得
       _, ext = os.path.splitext(f)
+
       if ext in tgt_exts:
         # ターゲットの拡張子であればフルパスを取得して出力
         absroot = os.path.abspath(root)
+        
         if args.outfile is not None:
           with open(args.outfile, 'wt') as search_file:
             search_file.write(os.path.join(absroot, f))
