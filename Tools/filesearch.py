@@ -26,7 +26,7 @@ def search_file():
     for f in files:
       _, ext = os.path.splitext(f)
 
-      if ext in exts:
+      if ext in tgt_exts:
         absroot = os.path.abspath(root)
 
         if args.outfile is not None:
