@@ -7,6 +7,9 @@ import sqlalchemy
 import sqlalchemy.ext.declarative
 import sqlalchemy.orm
 
+eng = sqlalchemy.create_engine('sqlite:///:memory:') # 
+Decbase = sqlalchemy.ext.declarative.declarative_base()
+
 
 # Item class
 class Item(Decbase):
@@ -28,9 +31,6 @@ class Item(Decbase):
 
 
 if __name__ == '__main__':
-  
-  eng = sqlalchemy.create_engine('sqlite:///:memory:') # 
-  Decbase = sqlalchemy.ext.declarative.declarative_base()
 
   Decbase.metadata.create_all(eng)
 
