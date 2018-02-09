@@ -7,7 +7,16 @@ import sqlalchemy
 import sqlalchemy.ext.declarative
 import sqlalchemy.orm
 
-eng = sqlalchemy.create_engine('sqlite:///:memory:') # 
+# sqlite
+# eng = sqlalchemy.create_engine('sqlite:///:memory:')
+# SQL文ののCheck
+eng = sqlalchemy.create_engine('sqlite:///:memory:', echo=True)
+# Database作成
+# eng = sqlalchemy.create_engine('sqlite:///test_sqlite')
+
+# mysql
+# eng = sqlalchemy.create_engine('mysql+pymysql:///test_mysql')
+
 Decbase = sqlalchemy.ext.declarative.declarative_base()
 
 
