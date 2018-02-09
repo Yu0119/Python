@@ -8,10 +8,6 @@ import sqlalchemy.ext.declarative
 import sqlalchemy.orm
 
 
-eng = sqlalchemy.create_engine('sqlite:///:memory:') # 
-Decbase = sqlalchemy.ext.declarative.declarative_base()
-
-
 # Item class
 class Item(Decbase):
   """
@@ -31,24 +27,29 @@ class Item(Decbase):
   price = sqlalchemy.Column(sqlalchemy.INTEGER())
 
 
-Decbase.metadata.create_all(eng)
+if __name__ == '__main__':
+  
+  eng = sqlalchemy.create_engine('sqlite:///:memory:') # 
+  Decbase = sqlalchemy.ext.declarative.declarative_base()
 
-Session = sqlalchemy.orm.sessionmaker(bind=eng)
-session = Session()
+  Decbase.metadata.create_all(eng)
 
-item1 = Item(name='ice-cream', price=150)
-session.add(item1)
-item2 = Item(name='candy', price=50)
-session.add(item2)
+  Session = sqlalchemy.orm.sessionmaker(bind=eng)
+  session = Session()
 
-# Add items ...
+  item1 = Item(name='ice-cream', price=150)
+  session.add(item1)
+  item2 = Item(name='candy', price=50)
+  session.add(item2)
 
-# Commit set items
-session.commit()
+  # Add items ...
 
-# Search all queries
-items = session.query(Item).all()
+  # Commit set items
+  session.commit()
 
-for item in items:
-  print(item.column_id, item.name, item.price)
+  # Search all queries
+  items = session.query(Item).all()
+
+  for item in items:
+    print(item.column_id, item.name, item.price)
   
