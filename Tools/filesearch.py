@@ -16,7 +16,7 @@ def search_file():
     Args:
       
     Return:
-
+    
   """
   exts = args.target_ext
   tgt_exts = ['.{}'.format(ext) for ext in exts.split(',')]
@@ -31,7 +31,7 @@ def search_file():
       if ext in tgt_exts:
         # ターゲットの拡張子であればフルパスを取得して出力
         absroot = os.path.abspath(root)
-        
+
         if args.outfile is not None:
           with open(args.outfile, 'wt') as search_file:
             search_file.write(os.path.join(absroot, f))
