@@ -15,12 +15,11 @@ import os
 
 parser = argparse.ArgumentParser(description="Load train/test dataset for keras")
 parser.add_argument('rootpath', help="Path to train dataset directory")
-parser.add_argument('--num_train_rate','-n', type=float, default=0.8, help="Set how many images use for train data")
+parser.add_argument('--num_train_rate','-n', type=float, \
+                    default=0.8, help="Set how many images use for train data")
 args = parser.parse_args()
 
-# Image height & width
-H,W = 224, 224
-# Number of classes
+H,W = 224, 224 # Image height & width
 NCLASS = 10
 
 
@@ -53,16 +52,16 @@ def load_datasets(rootpath):
     for imgid in trange(len(train_images), disc='load train images'):
       directory = directories[dirid]
       imgfile = train_images[imgid]
-      # Get image path
+      
       imgpath = '{}/{}/{}'.format(rootpath, directory, imgfile)
-      # Load image
+      
       image = load_img(imgpath, target_size=(H,W))
       # Convert to image array
       imgary = img_to_array(image)
-      # Get label with one-hot vector
+      # Get label with one-hot vector format
       one_hot_label = to_categorical(class_no, NCLASS)
 
-      # added to ndarray
+      # add to ndarray
       if imgid==0:
         train_x = imgary
         train_y = one_hot_label
