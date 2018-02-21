@@ -97,8 +97,8 @@ def load_datasets(rootpath):
 
 
 if __name__ == '__main__':
-  ROOT_DIRECTORY = args.rootpath
-  train_imgs, train_labels, test_imgs, test_labels = load_datasets(ROOT_DIRECTORY)
+    
+  train_imgs, train_labels, test_imgs, test_labels = load_datasets(args.rootpath)
 
   print('trainx datas', train_imgs.shape)
   print('trainy datas', train_labels.shape)
