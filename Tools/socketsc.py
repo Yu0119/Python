@@ -2,6 +2,7 @@
 from __future__ import print_function
 import socket
 
+
 class Socket:
   
   def __init__(self, host='127.0.0.1', port=60000):
@@ -31,6 +32,7 @@ class Socket:
       sock.sendall(b'Hello')
       data = sock.recv(1024)
       print(repr(data))
+
 
 if __name__ == '__main__':
   
