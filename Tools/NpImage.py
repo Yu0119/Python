@@ -12,6 +12,7 @@ class NpImage():
 
   def __init__(self, imgpath):
     self.image = imread(imgpath)
+    self.output = self.image
   
   # To grayscale image
   def grayscale(self):
