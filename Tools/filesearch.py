@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+"""
+ Search target extention files in directory
+"""
 from __future__ import print_function
 import argparse
 import os
