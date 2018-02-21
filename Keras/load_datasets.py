@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-"""[Load image utility for keras cnn datasets (simple CNN model)]
+"""
+[Load image utility for keras cnn datasets (simple CNN model)]
     train_x: train dataset
     train_y: train labels
     test_x:  test dataset
