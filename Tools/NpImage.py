@@ -5,6 +5,7 @@ import numpy as np
 import argparse
 from skimage.io import imread, imsave
 
+
 class NpImage():
   """[Image process modules use Numpy]
   """
