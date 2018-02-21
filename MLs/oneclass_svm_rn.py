@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
- Brief: Resnet50+PCAによるOneClassSVM
+ Brief: OneClassSVM with Resnet50+PCA
  Ref: https://hackernoon.com/one-class-classification-for-images-with-deep-features-be890c43455d
 """
 from __future__ import print_function
@@ -17,6 +17,7 @@ import six
 import os
 
 from keras.preprocessing.image import load_img, img_to_array
+
 
 # Parse arguments
 parser = argparse.ArgumentParser()
@@ -110,13 +111,14 @@ isolationforest_classifier = \
                 IsolationForest(contamination=0.08,
                                 max_features=1.0,
                                 n_estimators=40)
-# 学習データでフィッティング
+# fit with train data
 oneclass_svm_classifier.fit(X_train)
 isolationforest_classifier.fit(X_train)
 
-# One Class SVMによる予測
+# Predict with SVM
 oneclass_svm_predict = oneclass_svm_classifier.predict(X_test)
-# 孤立した分布を探索
+
+# Found isolation point
 isolation_predict =  isolationforest_classifier.predict(X_test)
 
 gausian_mixture_classifier = \
@@ -131,7 +133,7 @@ log_probs_value = \
 
 isotonic_regressor = IsotonicRegression(out_of_bounds='clip')
 
-# テストデータは0:T, 1:Fとする
+# 0:T, 1:F
 y_value = []
 isotonic_regressor.fit(log_probs_value, y_value)
 
