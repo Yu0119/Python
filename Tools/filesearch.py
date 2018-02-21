@@ -12,24 +12,19 @@ args = parser.parse_args()
 
 # Search target files
 def search_file():
-  """
-    Args:
-      
-    Return:
-    
-  """
+ 
   exts = args.target_ext
   tgt_exts = ['.{}'.format(ext) for ext in exts.split(',')]
 
-  # ルートパス内のディレクトリとファイルを探索
+  # Found directory & files in root directory
   for root, dirs, files in os.walk(args.rootpath):
     
     for f in files:
-      # ファイルの拡張子を取得
+      # Get file extention
       _, ext = os.path.splitext(f)
 
       if ext in tgt_exts:
-        # ターゲットの拡張子であればフルパスを取得して出力
+        # Output path if target extention
         absroot = os.path.abspath(root)
 
         if args.outfile is not None:
