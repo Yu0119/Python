@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""[summary]: Make google search query with urllib
+"""[Make google search query with urllib]
 """
 import webbrowser
 import urllib
