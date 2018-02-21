@@ -10,23 +10,19 @@ parser.add_argument('--target_ext','-t', default='txt,jpg', help="Input target e
 parser.add_argument('--outfile','-o', default=None, help="Input path to outfile(If input 'None', output to console)")
 args = parser.parse_args()
 
+
 # Search target files
 def search_file():
- 
   exts = args.target_ext
   tgt_exts = ['.{}'.format(ext) for ext in exts.split(',')]
-
   # Found directory & files in root directory
   for root, dirs, files in os.walk(args.rootpath):
-    
     for f in files:
       # Get file extention
       _, ext = os.path.splitext(f)
-
       if ext in tgt_exts:
         # Output path if target extention
         absroot = os.path.abspath(root)
-
         if args.outfile is not None:
           with open(args.outfile, 'wt') as search_file:
             search_file.write(os.path.join(absroot, f))
