@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
- Brief: Basic keras mnist training.
+ Basic keras mnist training.
 """
 # Import libs
 import keras
