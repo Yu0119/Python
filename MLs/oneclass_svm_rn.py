@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
  Brief: OneClassSVM with Resnet50+PCA
- Ref: https://hackernoon.com/one-class-classification-for-images-with-deep-features-be890c43455d
+ Modified from: https://hackernoon.com/one-class-classification-for-images-with-deep-features-be890c43455d
 """
 from __future__ import print_function
 from keras.applications.resnet50 import ResNet50
@@ -51,11 +51,12 @@ train_paths = [ os.path.join(args.traindir, imgfile) for imgfile \
                 in os.listdir(args.traindir) if imgfile.endswith('.jpg') ]
 test_paths = [ os.path.join(args.testdir, imgfile) for imgfile \
                 in os.listdir(args.testdir) if imgfile.endswith('.jpg') ]
-# Extract feature arrays
+
 
 print('num train images: {}'.format(len(train_paths)))
 print('num test images: {}'.format(len(test_paths)))
 
+# Extract feature arrays
 for i, train_path in enumerate(train_paths):
   image = load_img(train_path, target_size=(H, W))
   imgarray = img_to_array(image)
@@ -133,8 +134,15 @@ log_probs_value = \
 
 isotonic_regressor = IsotonicRegression(out_of_bounds='clip')
 
-# 0:T, 1:F
-y_value = []
+# Get targets
+ndatas = 10
+true_datas = os.listdir('true_data_dir')
+false_datas = os.listdir('false_data_dir')
+target_datas = true_datas[:ndatas]
+target_datas.append(false_datas[:ndatas])
+
+# 1:True data, 0: False data
+y_value = [1. if targetdata in true_datas else 0. for targtdata in target_datas ]
 isotonic_regressor.fit(log_probs_value, y_value)
 
 log_probs_test = gausian_mixture_classifier.score_samples(X_test)
