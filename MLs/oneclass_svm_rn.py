@@ -74,7 +74,7 @@ print(train_features.shape)
 # train_features = extract_resnet_features(train_imgarys)
 
 for j, test_path in enumerate(test_paths):
-  image = load_img(test_path, target_size=(224, 224))
+  image = load_img(test_path, target_size=(H, W))
   imgarray = img_to_array(image)
   imgarray = np.reshape(imgarray, (-1, H, W, 3))
   feature = extract_resnet_features(imgarray)
