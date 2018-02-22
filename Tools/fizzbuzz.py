@@ -9,9 +9,9 @@ args = parser.parse_args()
 def fizzbuzz(numbers):
   """
     Args:
-      numbers: ループ回数
+      numbers: num loops
     Return:
-      results: 結果文字列のリスト
+      results: result strings
   """
   
   results = list()
