@@ -1,5 +1,5 @@
 """
- Image Processes with numpy
+ Numpy image processes
 """
 import numpy as np
 import argparse
