@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
  Brief: OneClassSVM with Resnet50+PCA
- Modified from: https://hackernoon.com/one-class-classification-for-images-with-deep-features-be890c43455d
+ implement: https://hackernoon.com/one-class-classification-for-images-with-deep-features-be890c43455d
 """
 from __future__ import print_function
 from keras.applications.resnet50 import ResNet50
