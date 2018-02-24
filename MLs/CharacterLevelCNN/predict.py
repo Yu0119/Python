@@ -2,6 +2,12 @@
 """
  Predict script for character-level-cnn
  Implementation: https://qiita.com/bokeneko/items/c0f0ce60a998304400c8
+ 
+ Usage:
+   python predict.py <words_predict> --model <model.h5>
+ Args:
+   words_predict : target text strings judge spam or not.
+   --model : modelfile trained with spam datasets.
 """
 import numpy as np
 from keras.models import load_model
