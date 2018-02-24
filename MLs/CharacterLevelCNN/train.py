@@ -2,6 +2,9 @@
 """
  Character level analysis of CNN training script.
  Implementation: https://qiita.com/bokeneko/items/c0f0ce60a998304400c8
+ 
+ Usage:
+  python --tgtpath <target_path>
 """
 from keras.models import Input, Model
 from keras.layers import Convolution2D, MaxPooling2D, Dense, \
@@ -105,7 +108,7 @@ def train(inputs, targets, batch_size=100, epoch_count=100, max_length=300, mode
 if __name__ == '__main__':
     # Parser
     parser = argparse.ArgumentParser(description="CNN character-level prediction argorithm.")
-    parser.add_argument('--tgtpath','-t', default='data/smsspamcollection/SMSSpamCollection_train')
+    parser.add_argument('--tgtpath','-t', default='data/smsspamcollection/SMSSpamCollection')
     parser.add_argument('--maxlength','-m', type=int, default=300)
     parser.add_argument('--batch_size','-b', type=int, default=32)
     parser.add_argument('--epoch_count','-e', type=int, default=30)
@@ -116,9 +119,9 @@ if __name__ == '__main__':
     comments = load_spam_data(args.tgtpath, 'spam')
     # print(comments)
 
+    # Get datasets
     input_values = []
     target_values = []
-
     for target_value, input_value in comments:
         input_values.append(input_value)
         target_values.append(target_value)
