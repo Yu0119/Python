@@ -13,7 +13,6 @@ from sklearn.mixture import GaussianMixture
 from sklearn.isotonic import IsotonicRegression
 import numpy as np
 import argparse
-import six
 import os
 
 from keras.preprocessing.image import load_img, img_to_array
