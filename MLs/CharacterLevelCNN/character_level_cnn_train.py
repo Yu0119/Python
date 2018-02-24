@@ -79,7 +79,6 @@ def load_spam_data(filepath, targets, max_length=300, min_length=10):
         return texts
 
 
-# 学習に使用
 def train(inputs, targets, batch_size=100, epoch_count=100, max_length=300, model_filepath='model.h5', lr=0.001):
 
     # 学習率を少しずつ下げるようにする
