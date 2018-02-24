@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 """[Finetune Keras-Resnet50 model]
+
+ Usage:
+  python -tr <train_dir> -m <output_modelname> -e <num_epochs>
 """
 
 from keras.applications.resnet50 import ResNet50 
