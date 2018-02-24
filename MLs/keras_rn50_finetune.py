@@ -170,12 +170,8 @@ def model(x_train, y_train, base_model):
 
 if __name__ == '__main__':
     
-    TRAINPATH = 'data/mnist/train'
-    TESTPATH = 'data/mnist/validate'
-    dump_mnist_pickles(TRAINPATH, TESTPATH)
-    x_train, y_train, x_test, y_test = combine_pickles()
-    # DIR_TO_10CATEG_DATASETS = 'data/10CategoryImages'
-    # x_train, y_train, x_test, y_test = load_10category_images(DIR_TO_10CATEG_DATASETS)
+    DIR_TO_10CATEG_DATASETS = 'data/10CategoryImages'
+    x_train, y_train, x_test, y_test = load_10category_images(DIR_TO_10CATEG_DATASETS)
 
     # Create finetune resnet50 model
     res50_model = ResNet50(weights='imagenet', include_top=False, input_shape=(imgw,imgh,3))
