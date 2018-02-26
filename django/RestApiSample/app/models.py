@@ -4,7 +4,7 @@ class User(models.Model):
   name = models.CharField(max_length=64)
   
   def __str__(self):
-    return self.name
+    return self.name[:10]
 
 class Article(models.Model):
   user = models.ForeignKey(User, related_name='article')
@@ -12,4 +12,4 @@ class Article(models.Model):
   contents = models.TextField()
   
   def __str__(self):
-    return self.title
+    return self.title[:10]
