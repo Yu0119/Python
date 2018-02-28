@@ -70,7 +70,7 @@ def load_datasets(rootpath):
         train_y = np.append(train_y, one_hot_label)
 
     ### Load valid images & labels
-    for imgid in trange(len(valid_images), desc='load valid images'):
+    for imgid in trange(len(valid_images), disc='load valid images'):
       directory = directories[dirid]
       imgfile = valid_images[imgid]
       imgpath = '{}/{}/{}'.format(rootpath, directory, imgfile)
