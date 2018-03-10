@@ -90,7 +90,7 @@ if __name__ == '__main__':
         sum_loss = 0.0
         for i, (images, _) in enumerate(train_loader):
             # datasets
-            dtype = torch.FloatTensor
+            dtype = torch.FloatTensor if not use_cuda else torch.cuda.FloatTensor
             images = images.view(-1, 28*28).type(dtype)
             if use_cuda:
                 images = images.cuda()
