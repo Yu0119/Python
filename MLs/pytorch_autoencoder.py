@@ -71,20 +71,18 @@ if __name__ == '__main__':
 
     # Create model
     autoencoder = AutoEncoder()
-    
     if use_cuda:
         autoencoder.cuda()
-      
     print(autoencoder)
 
-    import torch.optim as optim
-
     # Optimizer
+    import torch.optim as optim
     criterion = nn.MSELoss()
     optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate, weight_decay=1e-5)
 
     # Create output directory
-    if not os.path.exists('output'): os.mkdir('output')
+    if not os.path.exists('output'):
+        os.mkdir('output')
 
     # Train    
     for epoch in six.moves.range(num_epochs):
@@ -94,15 +92,12 @@ if __name__ == '__main__':
             dtype = torch.FloatTensor
             # datasets
             images = images.view(-1, 28*28).type(dtype)
-            
             if use_cuda:
                 images = images.cuda()
-              
             images = Variable(images)
-            
-            optimizer.zero_grad()
 
             # forward & backprop
+            optimizer.zero_grad()
             _, encoded = autoencoder(images)
             loss = criterion(encoded, images)
             loss.backward()
@@ -115,6 +110,7 @@ if __name__ == '__main__':
 
                 # Initialize sum loss
                 sum_loss = 0.0
-
+        
+        # Save outputs
         pic = to_img(encoded.cpu().data)
         save_image(pic, './output/image_epoch{}.png'.format(epoch))
