@@ -11,7 +11,7 @@ from torchvision.utils import save_image
 
 import os
 import six
-
+import argparse
 
 # Convert to image arrays
 def to_img(x):
@@ -54,7 +54,8 @@ if __name__ == '__main__':
     num_epochs = 30
     input_size = 28*28
     learning_rate = 0.001
-
+    use_cuda = False
+    
     # Datasets
     images = torchvision.datasets.FashionMNIST(
         root='./data',
@@ -70,6 +71,10 @@ if __name__ == '__main__':
 
     # Create model
     autoencoder = AutoEncoder()
+    
+    if use_cuda:
+        autoencoder.cuda()
+      
     print(autoencoder)
 
     import torch.optim as optim
@@ -88,8 +93,13 @@ if __name__ == '__main__':
         for i, (images, _) in enumerate(train_loader):
             dtype = torch.FloatTensor
             # datasets
-            images = Variable(images.view(-1, 28*28).type(dtype))
-
+            images = images.view(-1, 28*28).type(dtype)
+            
+            if use_cuda:
+                images = images.cuda()
+              
+            images = Variable(images)
+            
             optimizer.zero_grad()
 
             # forward & backprop
