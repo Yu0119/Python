@@ -50,61 +50,61 @@ class AutoEncoder(nn.Module):
 
 if __name__ == '__main__':
 
-  # Hyper parameters
-  num_epochs = 30
-  input_size = 28*28
-  learning_rate = 0.001
+    # Hyper parameters
+    num_epochs = 30
+    input_size = 28*28
+    learning_rate = 0.001
 
-  # Datasets
-  images = torchvision.datasets.FashionMNIST(
-      root='./data',
-      train=True,
-      transform=transforms.ToTensor(),
-      download=True
-  )
-  train_loader = torch.utils.data.DataLoader(
-      images,
-      shuffle=True,
-      batch_size=batch_size
-  )
+    # Datasets
+    images = torchvision.datasets.FashionMNIST(
+        root='./data',
+        train=True,
+        transform=transforms.ToTensor(),
+        download=True
+    )
+    train_loader = torch.utils.data.DataLoader(
+        images,
+        shuffle=True,
+        batch_size=batch_size
+    )
 
-  # Create model
-  autoencoder = AutoEncoder()
-  print(autoencoder)
+    # Create model
+    autoencoder = AutoEncoder()
+    print(autoencoder)
 
-  import torch.optim as optim
+    import torch.optim as optim
 
-  # Optimizer
-  criterion = nn.MSELoss()
-  optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate, weight_decay=1e-5)
+    # Optimizer
+    criterion = nn.MSELoss()
+    optimizer = optim.Adam(autoencoder.parameters(), lr=learning_rate, weight_decay=1e-5)
 
-  # Create output directory
-  if not os.path.exists('output'): os.mkdir('output')
+    # Create output directory
+    if not os.path.exists('output'): os.mkdir('output')
 
-  # Train    
-  for epoch in six.moves.range(num_epochs):
+    # Train    
+    for epoch in six.moves.range(num_epochs):
 
-      sum_loss = 0.0
-      for i, (images, _) in enumerate(train_loader):
-          dtype = torch.FloatTensor
-          # datasets
-          images = Variable(images.view(-1, 28*28).type(dtype))
+        sum_loss = 0.0
+        for i, (images, _) in enumerate(train_loader):
+            dtype = torch.FloatTensor
+            # datasets
+            images = Variable(images.view(-1, 28*28).type(dtype))
 
-          optimizer.zero_grad()
+            optimizer.zero_grad()
 
-          # forward & backprop
-          _, encoded = autoencoder(images)
-          loss = criterion(encoded, images)
-          loss.backward()
-          optimizer.step()
+            # forward & backprop
+            _, encoded = autoencoder(images)
+            loss = criterion(encoded, images)
+            loss.backward()
+            optimizer.step()
 
-          sum_loss += loss.data[0]
+            sum_loss += loss.data[0]
 
-          if (i+1) % 100 == 0:
-              print('Epoch [{}/{}], Step [{}], loss: {}'.format(epoch+1, num_epochs, i+1, sum_loss))
+            if (i+1) % 100 == 0:
+                print('Epoch [{}/{}], Step [{}], loss: {}'.format(epoch+1, num_epochs, i+1, sum_loss))
 
-              # Initialize sum loss
-              sum_loss = 0.0
+                # Initialize sum loss
+                sum_loss = 0.0
 
-      pic = to_img(encoded.cpu().data)
-      save_image(pic, './output/image_epoch{}.png'.format(epoch))
+        pic = to_img(encoded.cpu().data)
+        save_image(pic, './output/image_epoch{}.png'.format(epoch))
