@@ -86,11 +86,11 @@ if __name__ == '__main__':
 
     # Train    
     for epoch in six.moves.range(num_epochs):
-
+    
         sum_loss = 0.0
         for i, (images, _) in enumerate(train_loader):
-            dtype = torch.FloatTensor
             # datasets
+            dtype = torch.FloatTensor
             images = images.view(-1, 28*28).type(dtype)
             if use_cuda:
                 images = images.cuda()
@@ -107,9 +107,7 @@ if __name__ == '__main__':
 
             if (i+1) % 100 == 0:
                 print('Epoch [{}/{}], Step [{}], loss: {}'.format(epoch+1, num_epochs, i+1, sum_loss))
-
-                # Initialize sum loss
-                sum_loss = 0.0
+                sum_loss = 0.0 # Init sum loss
         
         # Save outputs
         pic = to_img(encoded.cpu().data)
